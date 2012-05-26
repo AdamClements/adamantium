@@ -12,11 +12,11 @@ Currently the defresilient macro works like defn except it takes an additional a
 
 Import adamantium.core and then use the defresilient macro to define functions that you wish to be resilient
 
-(defresilient division 0 [a b] (/ a b))
-
-(division 8 4) => 2
-(division 8 0) => 0  ; And prints an appropriate stacktrace
-(division 8 4) => 0  ; This function is now redefined, so your console doesn't fill with stacktraces, obscuring what actually went wrong
+	(defresilient division 0 [a b] (/ a b))
+	
+	(division 8 4) => 2
+	(division 8 0) => 0  ; And prints an appropriate stacktrace
+	(division 8 4) => 0  ; This function is now redefined, so your console doesn't fill with stacktraces, obscuring what actually went wrong
 
 ## License
 
