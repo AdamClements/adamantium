@@ -16,7 +16,8 @@ Import adamantium.core and then use the defresilient macro to define functions t
 	
 	(division 8 4) => 2
 	(division 8 0) => 0  ; And prints an appropriate stacktrace
-	(division 8 4) => 0  ; This function is now redefined, so your console doesn't fill with stacktraces, obscuring what actually went wrong
+	(division 8 4) => 0  ; This function is now redefined, so your console doesn't fill 
+	                     ; with stacktraces, obscuring what actually went wrong
 
 ## License
 
