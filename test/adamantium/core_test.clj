@@ -1,7 +1,8 @@
 (ns adamantium.core-test
   (:use clojure.test
         adamantium.core
-        midje.sweet))
+        midje.sweet
+        clojure.stacktrace))
 
 ; Crud. They totally do affect one another, and I don't know how to do anything about that.
 ; Suggestions welcome.
@@ -18,7 +19,7 @@
       (do 
         (defresilient asplosion 42 [] (throw boom))
         (asplosion)) => 42
-      (provided (println anything) => nil))
+      (provided (print-stack-trace anything) => nil))
 
 (fact "Calling a resilient function does in fact give us the latest version of that function"
       (do
@@ -30,7 +31,8 @@
       (do
         (defresilient resilient-div nil [n d] (/ n d))
         (resilient-div 8 2)) => 4
-      (resilient-div 8 0) => nil)
+      (resilient-div 8 0) => nil
+      (provided (print-stack-trace anything) => nil))
 
 
 (fact "Functions can be redefined multiple times and will fall back to last known good then stay at default"
@@ -51,12 +53,12 @@
         (fallback 100 5)) => 50
       
       (fallback 100 5) => 50
-      (fallback 100 3) => 100 (provided (println anything) => nil)
+      (fallback 100 3) => 100 (provided (print-stack-trace anything) => nil)
       (fallback 100 4) => 50
-      (fallback 100 2) => 100 (provided (println anything) => nil)
+      (fallback 100 2) => 100 (provided (print-stack-trace anything) => nil)
       (fallback 100 3) => 50
-      (fallback 100 1) => 100 (provided (println anything) => nil)
+      (fallback 100 1) => 100 (provided (print-stack-trace anything) => nil)
       (fallback 100 2) => 50
-      (fallback 100 0) => nil (provided (println anything) => nil)
+      (fallback 100 0) => nil (provided (print-stack-trace anything) => nil)
       (fallback 100 0) => nil
       (fallback 100 5) => nil )
