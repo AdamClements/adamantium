@@ -31,3 +31,32 @@
         (defresilient resilient-div nil [n d] (/ n d))
         (resilient-div 8 2)) => 4
       (resilient-div 8 0) => nil)
+
+
+(fact "Functions can be redefined multiple times and will fall back to last known good then stay at default"
+      (do
+        (defresilient fallback nil [n d] (/ n d))
+        (fallback 100 5)) => 20
+      
+      (do
+        (defresilient fallback nil [n d] (/ n (- d 1)))
+        (fallback 100 5)) => 25
+      
+      (do
+        (defresilient fallback nil [n d] (/ n (- d 2)))
+        (fallback 100 5)) => (roughly 33.33)
+      
+      (do
+        (defresilient fallback nil [n d] (/ n (- d 3)))
+        (fallback 100 5)) => 50
+      
+      (fallback 100 5) => 50
+      (fallback 100 3) => 100 (provided (println anything) => nil)
+      (fallback 100 4) => 50
+      (fallback 100 2) => 100 (provided (println anything) => nil)
+      (fallback 100 3) => 50
+      (fallback 100 1) => 100 (provided (println anything) => nil)
+      (fallback 100 2) => 50
+      (fallback 100 0) => nil (provided (println anything) => nil)
+      (fallback 100 0) => nil
+      (fallback 100 5) => nil )
