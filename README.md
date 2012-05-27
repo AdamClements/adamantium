@@ -23,6 +23,7 @@ Import adamantium.core and then use the defresilient macro to define functions t
 * (DONE) Make it so that each function redefinition adds to the head of a list of possible definitions for that function. On failure, it will take the last known good function and pop the bad function off the top of the list, all the way back to the default
 * Figure out how this translates to production code (sed -i '/defresilient/defn/g' doesn't really cut it but we don't really want to be swallowing errors)
 * Keep track of which functions are the latest version and which have fallen back, allow the user to query this in the REPL and/or make a little interactive utility which will show it on screen the whole time
+* Consider performance/overhead and how that might be improved upon
 
 ## License
 
