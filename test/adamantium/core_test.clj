@@ -62,3 +62,5 @@
       (fallback 100 0) => nil (provided (print-stack-trace anything) => nil)
       (fallback 100 0) => nil
       (fallback 100 5) => nil )
+
+; TODO Test changing arity functions
