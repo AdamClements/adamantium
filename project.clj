@@ -1,4 +1,4 @@
-(defproject adamantium "0.1.0-SNAPSHOT"
+(defproject adamantium "0.1.1-SNAPSHOT"
   :description "A resilience library for better interactive programming"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
